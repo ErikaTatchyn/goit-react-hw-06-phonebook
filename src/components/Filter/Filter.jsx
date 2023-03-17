@@ -1,11 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styles from './Filter.module.css';
 import { updateFilter } from 'redux/contactsSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Filter = () => {
   const dispatch = useDispatch();
+  const filter = useSelector(state => state.contacts.filter);
 
   const handleFilterChange = e => {
     dispatch(updateFilter(e.target.value));
@@ -18,15 +18,11 @@ const Filter = () => {
         type="text"
         name="filter"
         className={styles.filterInput}
+        value={filter}
         onChange={handleFilterChange}
       />
     </label>
   );
-};
-
-Filter.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
 };
 
 export default Filter;
