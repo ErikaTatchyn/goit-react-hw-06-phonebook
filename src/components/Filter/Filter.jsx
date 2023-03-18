@@ -7,7 +7,7 @@ const Filter = () => {
   const dispatch = useDispatch();
   const filter = useSelector(state => state.contacts.filter);
 
-  const handleFilterChange = e => {
+  const handleUpdateFilter = e => {
     dispatch(updateFilter(e.target.value));
   };
 
@@ -19,7 +19,7 @@ const Filter = () => {
         name="filter"
         className={styles.filterInput}
         value={filter}
-        onChange={handleFilterChange}
+        onChange={handleUpdateFilter}
       />
     </label>
   );
