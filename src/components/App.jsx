@@ -8,6 +8,10 @@ import Filter from './Filter/Filter';
 
 export function App() {
   const contacts = useSelector(state => state.contacts.list);
+  const filter = useSelector(state => state.contacts.filter);
+  const filteredContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
 
   return (
     <div className={styles.container}>
@@ -17,8 +21,8 @@ export function App() {
       <h2 className={styles.heading}>Contacts</h2>
       {contacts.length > 0 ? (
         <div>
-          <Filter />
-          <ContactList contacts={contacts} />
+          <Filter filter={filter} />
+          <ContactList contacts={filteredContacts} />
         </div>
       ) : (
         <p>Your phonebook is empty. Please add contacts.</p>
